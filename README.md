@@ -16,135 +16,117 @@ Memory Usage	50-150 MB (Optimized)
 Interface	Graphical User Interface (GUI)
 License	GNU General Public License v3.0 
 
-🚀 Key Features.
-⚡ One-Click Optimization.
-•	Complete System Tune-up with single button click.
-•	6-Step Optimization Process with progress visualization.
-•	Automated Performance Boost up to 40% improvement.
-•	Intelligent Algorithm that adapts to your system.
-•	Real-time Progress Tracking with percentage indicators.
+ALL OPTIMIZATIONS INCLUDED:
+1.	Disk & Storage Optimization
+o	Temporary files cleanup
+o	HDD defragmentation
+o	SSD TRIM optimization
+o	Windows Update cache cleanup
+o	Prefetch/Superfetch cleanup
+o	Thumbnail cache cleanup
+o	Recycle Bin cleanup
+o	Disk health checks (S.M.A.R.T.)
+o	Virtual memory optimization
+o	Disk space analysis
 
-📊 Advanced System Monitoring.
-•	Real-time CPU Usage monitoring with percentage gauges.
-•	RAM Utilization Tracking with detailed memory analysis.
-•	Disk Space Management with C: drive monitoring.
-•	System Uptime Display with detailed statistics.
-•	Performance History visualization.
-🔧 Startup Program Management.
-•	Startup Item Detection from Registry and Startup folders.
-•	Program Impact Analysis with publisher information.
-•	Bulk Enable/Disable operations for multiple items.
-•	Search & Filter functionality for easy management.
-•	Startup Optimization to reduce boot time by up to 40%.
+2.	Memory & RAM Optimization
+o	Clear standby memory
+o	Optimize virtual memory (pagefile)
+o	Disable memory compression
+o	Enable large system cache
+o	Clear working set
+o	Memory diagnostics
 
-🛠️ Comprehensive System Tools.
-•	Registry Cleaner - Safe registry optimization.
-•	Disk Cleaner - Remove temporary and junk files.
-•	Network Optimizer - Boost internet speed and stability.
-•	Privacy Protector - Enhance Windows privacy settings.
-•	Power Manager - Optimize power plans for efficiency.
-•	Visual Tuner - Adjust visual effects for performance.
-•	Service Manager - Windows services control panel.
+3.	CPU & Power Optimization
+o	High performance power plan
+o	Processor power management
+o	Disable CPU throttling
+o	Enable all CPU cores
+o	Disable CPU parking
+o	Optimize processor scheduling
+o	Disable power throttling
+o	CPU usage monitoring
 
-🎨 Professional Interface.
-•	Modern GUI Design with gradient headers.
-•	Color-coded Controls for intuitive navigation.
-•	Responsive Layout that adapts to screen size.
-•	Hover Effects on interactive elements.
-•	Professional Color Scheme with visual hierarchy.
+4.	Network & Internet Optimization
+o	TCP/IP settings optimization
+o	DNS optimization (Cloudflare/Google)
+o	Disable network throttling
+o	Network adapter optimization
+o	DNS cache flush
+o	Network stack reset
+o	QoS packet scheduler optimization
+o	Disable auto-tuning
 
-💾 Memory Efficient Design.
-•	Optimized Garbage Collection with MemoryManager class.
-•	Batch Processing for large data sets.
-•	COM Object Cleanup to prevent memory leaks.
-•	Low Memory Footprint (50-150 MB during operation).
-•	Automatic Cleanup on application exit.
+5.	Startup & Services Optimization
+o	Disable unnecessary startup programs
+o	Optimize Windows services (disable telemetry, etc.)
+o	Disable Superfetch/Prefetch
+o	Disable Windows Search indexing
+o	Disable background apps
+o	Manage scheduled tasks
 
-⚙️ Smart Configuration.
-•	Auto-startup Option - Launch with Windows.
-•	Auto-optimization - Run optimization on startup.
-•	Notification Settings - Control optimization alerts.
-•	System Restore Points - Create before major changes.
-•	Settings Export/Import - Backup and restore configurations.
+6.	System & Registry Optimization
+o	Registry cleaning and optimization
+o	Disable Windows animations
+o	File system optimization
+o	Disable error reporting
+o	Windows Update optimization
+o	Windows Defender optimization
+o	System file repair (SFC/DISM)
 
-🏢 Company Information.
-•	Developer: IGRF Private Limited.
-•	Website: https://igrf.co.in/en/.
+7.	Privacy & Security Optimization
+o	Disable Windows telemetry
+o	Disable data collection
+o	Disable Cortana
+o	Disable location tracking
+o	Disable advertising ID
+o	Disable Wi-Fi Sense
+o	Disable Windows tips
+o	Disable activity history
 
-🔒 Security & Privacy.
-•	No Telemetry - Complete privacy protection.
-•	No Data Collection - Your data stays on your system.
-•	Administrator Mode - Safe system modifications.
-•	Restore Point Creation - Safety net before changes.
-•	Transparent Operations - All actions are logged and visible.
+8.	UI & Visual Effects Optimization
+o	Disable all visual effects (best performance)
+o	Balanced visual effects
+o	Disable transparency
+o	Disable animations
+o	Disable shadows
+o	Disable smooth fonts
+o	Taskbar and Start menu optimization
+o	Explorer settings optimization
 
-📈 Performance Benefits
-Optimization	Improvement
-Boot Time	Up to 40% faster startup
-Memory Usage	Up to 25% reduction
-Disk Space	Recover 2-5GB of storage
-System Responsiveness	35% improvement
-Network Speed	Optimized TCP/IP settings
+9.	Advanced Tools
+o	DISM repair
+o	SFC scan
+o	CHKDSK
+o	Windows Update reset
+o	Clean boot
+o	Performance monitor
+o	Event viewer
+o	Resource monitor
+o	System configuration
 
-🚦 System Requirements.
-Minimum Requirements.
-•	OS: Windows 10 (64-bit) or Windows 11.
-•	Processor: 1 GHz or faster processor.
-•	RAM: 4 GB minimum.
-•	Storage: 200 MB available space.
-•	PowerShell: Version 5.1 or higher.
-•	.NET Framework: 4.7.2 or higher.
-Recommended Requirements.
-•	OS: Windows 11 (Latest Build).
-•	Processor: 2 GHz dual-core or better.
-•	RAM: 8 GB or more.
-•	Storage: 500 MB SSD space.
-•	PowerShell: Version 7.x.
-•	Administrator Privileges for full functionality.
+10.	Monitoring & Diagnostics
+o	Real-time system monitor
+o	Performance counters
+o	Network monitor
+o	Disk activity monitor
+o	Process explorer
+o	System health reports
+o	System benchmarks
 
-🛡️ Safety Features.
-•	Non-Destructive Operations - All changes are reversible.
-•	Restore Point Creation - Automatic backup before optimization.
-•	Administrator Verification - Checks for required privileges.
-•	Error Handling - Graceful recovery from errors.
-•	Logging System - Complete operation history.
+11.	Backup & Restore
+o	System restore points
+o	Registry backup
+o	Settings backup/restore
+o	Reset to defaults
+o	Backup history
 
-🔧 Technical Architecture.
-•	Core Components.
-•	MemoryManager Class - Advanced garbage collection.
-•	UIControlBuilder Class - Dynamic UI generation.
-•	OptimizerLogger Class - Comprehensive logging.
-•	Theme System - Centralized color management.
-•	Event Handlers - Responsive user interaction.
-•	Memory Optimization.
-•	Batch Processing for large datasets.
-•	Automatic Cleanup after operations.
-•	Efficient Object Management with disposal patterns.
-•	Minimal Resource Usage design philosophy.
+Safety Features:
+•	All optimizations are reversible
+•	Automatic restore point creation
+•	Registry backup before changes
+•	Comprehensive logging
+•	No dangerous deletions
+•	Confirmation prompts for major changes
+•	Works with antivirus software
 
-📊 Performance Metrics
-Metric	Value
-Application Load Time	2-5 seconds
-Memory Usage (Idle)	50-80 MB
-Memory Usage (Active)	100-150 MB
-Optimization Time	30-60 seconds
-Startup Scan Time	1-3 seconds
-
-📄 License.
-This project is licensed under the GNU General Public License v3.0.
-Copyright (c) 2026 IGRF Private Limited.
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:.
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-📞 Support & Contact.
-•	Website: https://igrf.co.in/en/.
-•	Documentation: In-code comments and this README.
-
-🙏 Acknowledgments.
-•	Thanks to all contributors and testers.
-•	Windows PowerShell team for the platform.
-•	Open-source community for inspiration.
-•	Users who provide valuable feedback.
-
-⭐ Show Your Support.
-•	If you find this project helpful, please give it a star on GitHub!
