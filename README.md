@@ -1,13 +1,13 @@
-# Windows-One-Click-Optimizer-Pro
-Windows One Click Optimizer Pro promises a faster, cleaner PC with a single click. It scans for junk files, invalid registry entries, and privacy traces to free up space and improve performance. Features include a startup manager and system tweaks to help streamline and secure your Windows experience, aiming for optimal speed and efficiency.
+# Windows-Performance-Optimizer-Pro
+Windows Performance Optimizer Pro promises a faster, cleaner PC with a single click. It scans for junk files, invalid registry entries, and privacy traces to free up space and improve performance. Features include a startup manager and system tweaks to help streamline and secure your Windows experience, aiming for optimal speed and efficiency.
 
-Windows One Click Optimizer Pro.
+Windows Performance Optimizer Pro.
 
 Professional Windows Optimization Suite developed by IGRF Private Limited - A comprehensive, memory-efficient tool for optimizing Windows performance with one-click automation.
 
 📋 Product Specifications
 Specification	Details
-Product Name	Windows One Click Optimizer Pro
+Product Name	Windows Performance Optimizer Pro
 Version	1.0 Professional Edition
 Developer	IGRF Private Limited
 Platform	Windows 10 / Windows 11
