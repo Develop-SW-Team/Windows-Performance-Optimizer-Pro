@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Performance Optimizer Pro v1.0</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 5px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .title-container h1 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .title-container p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .dev-info {
+            text-align: right;
+        }
+
+        .dev-info a {
+            color: #bbdefb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .dev-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Menu Bar */
+        .menu-bar {
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            display: flex;
+            padding: 0 15px;
+        }
+
+        .menu-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: #555;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .menu-item:hover {
+            background-color: #f5f7fa;
+            color: #1a73e8;
+        }
+
+        .menu-item.active {
+            color: #1a73e8;
+            border-bottom-color: #1a73e8;
+        }
+
+        .menu-item i {
+            margin-right: 8px;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* System Info Panel */
+        .panel {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .panel-title i {
+            margin-right: 10px;
+        }
+
+        .system-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .info-card {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .info-label {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Disk Tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .tool-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: #1a73e8;
+        }
+
+        .tool-card i {
+            font-size: 32px;
+            color: #1a73e8;
+            margin-bottom: 10px;
+        }
+
+        .tool-card h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .tool-card p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Optimization Panel */
+        .optimization-controls {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: #1a73e8;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0d62d9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(13, 98, 217, 0.3);
+        }
+
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #e53935;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(229, 57, 53, 0.3);
+        }
+
+        .btn-success {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #43a047;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(67, 160, 71, 0.3);
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        .time-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-left: auto;
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Progress Panel */
+        .progress-panel {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1a73e8;
+        }
+
+        .step-info {
+            font-size: 14px;
+            color: #666;
+            background-color: #e3f2fd;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .current-operation {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #333;
+            padding: 10px;
+            background-color: white;
+            border-radius: 6px;
+            border-left: 4px solid #1a73e8;
+        }
+
+        .progress-container {
+            margin-bottom: 20px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #1a73e8;
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .step-progress-fill {
+            background-color: #4caf50;
+        }
+
+        .step-details {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Tips Panel */
+        .tips-panel {
+            background-color: #fff8e1;
+            border-radius: 8px;
+            padding: 15px 20px;
+            border-left: 5px solid #ffb300;
+            margin-top: 20px;
+        }
+
+        .tips-panel i {
+            color: #ffb300;
+            margin-right: 10px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a73e8;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .log-list {
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            padding: 10px;
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+        }
+
+        .log-entry {
+            padding: 5px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .log-time {
+            color: #666;
+            margin-right: 10px;
+        }
+
+        .log-type {
+            font-weight: 600;
+            margin-right: 10px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+
+        .log-type.info {
+            background-color: #e3f2fd;
+            color: #1a73e8;
+        }
+
+        .log-type.success {
+            background-color: #e8f5e9;
+            color: #4caf50;
+        }
+
+        .log-type.warning {
+            background-color: #fff8e1;
+            color: #ff9800;
+        }
+
+        .log-type.error {
+            background-color: #ffebee;
+            color: #f44336;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            background-color: white;
+            padding: 10px 20px;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: #666;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .dev-info {
+                text-align: left;
+            }
+            
+            .menu-bar {
+                flex-wrap: wrap;
+            }
+            
+            .menu-item {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+            
+            .optimization-controls {
+                flex-direction: column;
+            }
+            
+            .time-info {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+        }
+
+        /* About Dialog */
+        .about-content {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .about-logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .about-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .about-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1a73e8;
+            margin-bottom: 10px;
+        }
+
+        .about-version {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .about-developer {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .about-url {
+            display: block;
+            color: #1a73e8;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .about-desc {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .about-copyright {
+            color: #999;
+            font-size: 14px;
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo">
+                    <!-- Inline IGRF logo as base64 encoded image -->
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNzAiIGhlaWdodD0iNzAiIHZpZXdCb3g9IjAgMCA3MCA3MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjcwIiBoZWlnaHQ9IjcwIiByeD0iMTAiIGZpbGw9IiMxQTczRTgiLz4KPHRleHQgeD0iMzUiIHk9IjI4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCI+SUdSRjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjYiPjx0c3BhbiB4PSIzNSIgZHk9IjAiPkRJU0NPVkVSPC90c3Bhbj48dHNwYW4geD0iMzUiIGR5PSI2Ij5JTk5PVkFURTwvdHNwYW4+PHRzcGFuIHg9IjM1IiBkeT0iMTIiPlRSQU5TRk9STTwvdHNwYW4+PHRzcGFuIHg9IjM1IiBkeT0iMTgiPklOU1BJUkU8L3RzcGFuPjwvdGV4dD4KPHJlY3QgeD0iNSIgeT0iNSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiByeD0iOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjwvc3ZnPg==" alt="IGRF Logo">
+                </div>
+                <div class="title-container">
+                    <h1>Windows Performance Optimizer Pro</h1>
+                    <p>Version 1.0 | Complete Edition</p>
+                </div>
+            </div>
+            <div class="dev-info">
+                <p>Developed by: IGRF Pvt.</p>
+                <a href="https://igrf.co.in/en/" target="_blank">https://igrf.co.in/en/</a>
+            </div>
+        </div>
+
+        <!-- Menu Bar -->
+        <div class="menu-bar">
+            <div class="menu-item active" data-tab="home">
+                <i class="fas fa-home"></i> Home
+            </div>
+            <div class="menu-item" data-tab="tools">
+                <i class="fas fa-tools"></i> Tools
+            </div>
+            <div class="menu-item" data-tab="reports">
+                <i class="fas fa-chart-bar"></i> Reports
+            </div>
+            <div class="menu-item" data-tab="about">
+                <i class="fas fa-info-circle"></i> About
+            </div>
+        </div>
+
+        <!-- Home Tab -->
+        <div id="home-tab" class="tab-content active">
+            <!-- System Information Panel -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-desktop"></i> System Information
+                </div>
+                <div class="system-info-grid">
+                    <div class="info-card">
+                        <div class="info-label">CPU</div>
+                        <div class="info-value" id="cpu-info">i5-10210U</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">RAM</div>
+                        <div class="info-value" id="ram-info">8.55/15.64 GB</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Disk C:</div>
+                        <div class="info-value" id="disk-info">94.9/169.4 GB</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Windows Version</div>
+                        <div class="info-value" id="os-info">10.0.26220</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Uptime</div>
+                        <div class="info-value" id="uptime-info">0d 4h 0m</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Processes</div>
+                        <div class="info-value" id="processes-info">268</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Services</div>
+                        <div class="info-value" id="services-info">128</div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-label">Disk Type</div>
+                        <div class="info-value" id="disk-type-info">SSD</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disk Optimization Tools Panel -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-hdd"></i> Disk Optimization Tools
+                </div>
+                <p style="margin-bottom: 20px; color: #666;">Quick disk maintenance tools to free up space and improve performance</p>
+                
+                <div class="tools-grid">
+                    <div class="tool-card" onclick="startDiskCleanup()">
+                        <i class="fas fa-broom"></i>
+                        <h3>Clean Temporary Files</h3>
+                        <p>Remove temporary and junk files to free up disk space</p>
+                    </div>
+                    <div class="tool-card" onclick="startDefragmentation()" id="defrag-btn">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                        <h3>Defragment (HDD)</h3>
+                        <p>Optimize HDD performance by defragmenting files</p>
+                    </div>
+                    <div class="tool-card" onclick="startSSDTrim()" id="trim-btn">
+                        <i class="fas fa-sd-card"></i>
+                        <h3>TRIM SSD</h3>
+                        <p>Optimize SSD performance with TRIM command</p>
+                    </div>
+                    <div class="tool-card" onclick="analyzeDiskUsage()">
+                        <i class="fas fa-chart-pie"></i>
+                        <h3>Analyze Disk Usage</h3>
+                        <p>Analyze disk space usage and identify large files</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complete System Optimization Panel -->
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-tachometer-alt"></i> Complete System Optimization
+                </div>
+                <p style="margin-bottom: 20px; color: #666;">Perform all optimizations in the correct sequence for maximum performance</p>
+                
+                <div class="optimization-controls">
+                    <button class="btn btn-success" onclick="startCompleteOptimization()" id="start-opt-btn">
+                        <i class="fas fa-play"></i> Start Complete Optimization
+                    </button>
+                    <button class="btn btn-danger" onclick="stopOptimization()" id="stop-opt-btn" disabled>
+                        <i class="fas fa-stop"></i> Stop Optimization
+                    </button>
+                    <div class="time-info">
+                        <div>Estimated time: 15-30 minutes</div>
+                        <div id="time-remaining" style="display: none;">Time remaining: 25:00</div>
+                    </div>
+                </div>
+
+                <!-- Progress Panel -->
+                <div class="progress-panel" id="progress-panel" style="display: none;">
+                    <div class="progress-header">
+                        <div class="progress-title">Optimization Progress</div>
+                        <div class="step-info" id="step-info">Step: 0/12</div>
+                    </div>
+                    
+                    <div class="current-operation" id="current-operation">
+                        Ready to start optimization...
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Overall Progress</span>
+                            <span id="overall-percent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="overall-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-container">
+                        <div class="progress-label">
+                            <span>Current Step</span>
+                            <span id="step-percent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill step-progress-fill" id="step-progress" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="step-details">
+                        <div id="step-desc">Ready to start optimization...</div>
+                        <div id="step-number" style="font-weight: 600; margin-top: 10px; color: #1a73e8;">Step 0/12: Ready</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips Panel -->
+            <div class="tips-panel">
+                <i class="fas fa-lightbulb"></i>
+                <strong>Tip:</strong> For best results, close other applications before starting optimization. Restart your computer after completion.
+            </div>
+        </div>
+
+        <!-- Tools Tab -->
+        <div id="tools-tab" class="tab-content">
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-tools"></i> Advanced Tools
+                </div>
+                
+                <div class="tools-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    <div class="tool-card" onclick="viewLog()">
+                        <i class="fas fa-file-alt"></i>
+                        <h3>View Log</h3>
+                        <p>View the optimization log file with all operations and results</p>
+                    </div>
+                    <div class="tool-card" onclick="generateReport()">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Generate Report</h3>
+                        <p>Create a detailed system optimization report</p>
+                    </div>
+                    <div class="tool-card" onclick="showServiceManager()">
+                        <i class="fas fa-cogs"></i>
+                        <h3>Service Manager</h3>
+                        <p>Manage Windows services for better performance</p>
+                    </div>
+                    <div class="tool-card" onclick="showStartupManager()">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Startup Manager</h3>
+                        <p>Control programs that start with Windows</p>
+                    </div>
+                    <div class="tool-card" onclick="showRegistryCleaner()">
+                        <i class="fas fa-database"></i>
+                        <h3>Registry Cleaner</h3>
+                        <p>Clean and optimize Windows registry</p>
+                    </div>
+                    <div class="tool-card" onclick="showPrivacyOptimizer()">
+                        <i class="fas fa-user-shield"></i>
+                        <h3>Privacy Optimizer</h3>
+                        <p>Optimize Windows privacy settings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Tab -->
+        <div id="reports-tab" class="tab-content">
+            <div class="panel">
+                <div class="panel-title">
+                    <i class="fas fa-chart-bar"></i> System Reports
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <button class="btn btn-primary" onclick="generateFullReport()">
+                        <i class="fas fa-file-download"></i> Generate Full System Report
+                    </button>
+                </div>
+                
+                <div id="reports-list">
+                    <p>No reports generated yet. Click the button above to create your first system report.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Tab -->
+        <div id="about-tab" class="tab-content">
+            <div class="about-content">
+                <div class="about-logo">
+                    <!-- Larger inline IGRF logo for About dialog -->
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iMjAiIGZpbGw9IiMxQTczRTgiLz4KPHRleHQgeD0iNjAiIHk9IjQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+SUdSRjwvdGV4dD4KPHRleHQgeD0iNjAiIHk9Ijc1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEwIj48dHNwYW4geD0iNjAiIGR5PSIwIj5ESVNDT1ZFUjwvdHNwYW4+PHRzcGFuIHg9IjYwIiBkeT0iMTIiPklOTk9WQVRFPC90c3Bhbj48dHNwYW4geD0iNjAiIGR5PSIyNCI+VFJBTlNGT1JNPC90c3Bhbj48dHNwYW4geD0iNjAiIGR5PSIzNiI+SU5TUElSRTwvdHNwYW4+PC90ZXh0Pgo8cmVjdCB4PSIxMCIgeT0iMTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiByeD0iMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMyIvPgo8L3N2Zz4=" alt="IGRF Logo">
+                </div>
+                <h1 class="about-title">Windows Performance Optimizer Pro</h1>
+                <div class="about-version">Version 1.0 - Complete Edition</div>
+                <div class="about-developer">Developed by: IGRF Pvt. Ltd.</div>
+                <a href="https://igrf.co.in/en/" target="_blank" class="about-url">https://igrf.co.in/en/</a>
+                <div class="about-desc">
+                    A comprehensive Windows optimization tool designed to enhance system performance, stability, and security. 
+                    This HTML version simulates the functionality of the PowerShell application for demonstration purposes.
+                </div>
+                <div class="about-copyright">© 2026 IGRF Pvt. Ltd. All rights reserved.</div>
+                
+                <div style="margin-top: 30px; text-align: left; background-color: #f5f7fa; padding: 20px; border-radius: 8px;">
+                    <h3 style="color: #1a73e8; margin-bottom: 10px;">Application Features:</h3>
+                    <ul style="line-height: 1.8; color: #666;">
+                        <li>Complete system optimization with 12 sequential steps</li>
+                        <li>Disk cleanup and temporary file removal</li>
+                        <li>HDD defragmentation and SSD TRIM optimization</li>
+                        <li>Disk usage analysis and visualization</li>
+                        <li>System information monitoring in real-time</li>
+                        <li>Detailed optimization reports</li>
+                        <li>Service and startup program management</li>
+                        <li>Registry cleaning and optimization</li>
+                        <li>Privacy settings optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div id="status-text">Ready</div>
+            <div id="update-time">Last updated: <span id="current-time">--:--:--</span></div>
+        </div>
+    </div>
+
+    <!-- Disk Cleanup Modal -->
+    <div id="disk-cleanup-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Disk Cleanup</div>
+                <button class="modal-close" onclick="closeModal('disk-cleanup-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Cleaning temporary files and cache...</p>
+                <div class="progress-bar" style="margin: 20px 0;">
+                    <div class="progress-fill" id="cleanup-progress" style="width: 0%"></div>
+                </div>
+                <div class="log-list" id="cleanup-log">
+                    <div class="log-entry">
+                        <span class="log-time">[12:00:00]</span>
+                        <span class="log-type info">INFO</span>
+                        <span>Starting disk cleanup...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Defragmentation Modal -->
+    <div id="defrag-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Disk Defragmentation</div>
+                <button class="modal-close" onclick="closeModal('defrag-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Defragmenting C: drive (HDD)...</p>
+                <div class="progress-bar" style="margin: 20px 0;">
+                    <div class="progress-fill" id="defrag-progress" style="width: 0%"></div>
+                </div>
+                <div class="log-list" id="defrag-log">
+                    <div class="log-entry">
+                        <span class="log-time">[12:00:00]</span>
+                        <span class="log-type info">INFO</span>
+                        <span>Starting disk defragmentation...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SSD TRIM Modal -->
+    <div id="trim-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">SSD TRIM Operation</div>
+                <button class="modal-close" onclick="closeModal('trim-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Running TRIM optimization on SSD...</p>
+                <div class="progress-bar" style="margin: 20px 0;">
+                    <div class="progress-fill" id="trim-progress" style="width: 0%"></div>
+                </div>
+                <div class="log-list" id="trim-log">
+                    <div class="log-entry">
+                        <span class="log-time">[12:00:00]</span>
+                        <span class="log-type info">INFO</span>
+                        <span>Starting SSD TRIM operation...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Disk Analysis Modal -->
+    <div id="analysis-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Disk Usage Analysis</div>
+                <button class="modal-close" onclick="closeModal('analysis-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Analyzing disk usage on C: drive...</p>
+                <div class="progress-bar" style="margin: 20px 0;">
+                    <div class="progress-fill" id="analysis-progress" style="width: 0%"></div>
+                </div>
+                <div id="analysis-results" style="margin-top: 20px;">
+                    <!-- Results will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Log Viewer Modal -->
+    <div id="log-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Optimization Log</div>
+                <button class="modal-close" onclick="closeModal('log-modal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="log-list" id="log-viewer">
+                    <!-- Log entries will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Application state
+        let optimizationInProgress = false;
+        let currentStep = 0;
+        let totalSteps = 12;
+        let optimizationTimer = null;
+        let startTime = null;
+        let logEntries = [];
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup menu tab switching
+            setupMenuTabs();
+            
+            // Initialize system info
+            updateSystemInfo();
+            
+            // Setup disk type detection
+            setupDiskType();
+            
+            // Setup time display
+            updateTime();
+            setInterval(updateTime, 1000);
+            
+            // Setup system info updates
+            setInterval(updateSystemInfo, 5000);
+            
+            // Initialize log entries
+            logEntries.push({
+                time: getCurrentTime(),
+                type: 'INFO',
+                message: 'Windows Optimizer Pro HTML v1.0 Initialized'
+            });
+            
+            logEntries.push({
+                time: getCurrentTime(),
+                type: 'INFO',
+                message: 'Computer: ' + (window.location.hostname || 'Localhost')
+            });
+            
+            logEntries.push({
+                time: getCurrentTime(),
+                type: 'INFO',
+                message: 'Windows Version: HTML Simulation'
+            });
+            
+            // Add logo loaded message
+            logEntries.push({
+                time: getCurrentTime(),
+                type: 'INFO',
+                message: 'IGRF logo loaded successfully (IGRE with motto: DISCOVER,INNOVATE,TRANSFORM,INSPIRE)'
+            });
+        });
+        
+        // Menu tab switching
+        function setupMenuTabs() {
+            const menuItems = document.querySelectorAll('.menu-item');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all menu items and tabs
+                    menuItems.forEach(mi => mi.classList.remove('active'));
+                    tabContents.forEach(tc => tc.classList.remove('active'));
+                    
+                    // Add active class to clicked menu item
+                    this.classList.add('active');
+                    
+                    // Show corresponding tab content
+                    const tabId = this.getAttribute('data-tab') + '-tab';
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+        }
+        
+        // Update system information
+        function updateSystemInfo() {
+            // Simulate dynamic values
+            const processes = Math.floor(Math.random() * 50) + 250; // 250-300
+            const services = Math.floor(Math.random() * 20) + 120; // 120-140
+            
+            document.getElementById('processes-info').textContent = processes;
+            document.getElementById('services-info').textContent = services;
+            
+            // Update time
+            updateTime();
+        }
+        
+        // Update time display
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('current-time').textContent = timeString;
+        }
+        
+        // Get current time for logs
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+        }
+        
+        // Setup disk type detection
+        function setupDiskType() {
+            // In a real application, this would detect actual disk type
+            // For simulation, we'll use SSD as default
+            const diskType = 'SSD';
+            document.getElementById('disk-type-info').textContent = diskType;
+            
+            // Update button states based on disk type
+            const defragBtn = document.getElementById('defrag-btn');
+            const trimBtn = document.getElementById('trim-btn');
+            
+            if (diskType === 'SSD') {
+                defragBtn.querySelector('h3').textContent = 'Defrag (HDD Only)';
+                defragBtn.style.opacity = '0.6';
+                defragBtn.style.cursor = 'not-allowed';
+                defragBtn.onclick = null;
+                
+                trimBtn.querySelector('h3').textContent = 'TRIM SSD';
+                trimBtn.style.opacity = '1';
+                trimBtn.style.cursor = 'pointer';
+                trimBtn.onclick = startSSDTrim;
+            } else {
+                defragBtn.querySelector('h3').textContent = 'Defragment (HDD)';
+                defragBtn.style.opacity = '1';
+                defragBtn.style.cursor = 'pointer';
+                defragBtn.onclick = startDefragmentation;
+                
+                trimBtn.querySelector('h3').textContent = 'TRIM (SSD Only)';
+                trimBtn.style.opacity = '0.6';
+                trimBtn.style.cursor = 'not-allowed';
+                trimBtn.onclick = null;
+            }
+        }
+        
+        // Disk Cleanup Function
+        function startDiskCleanup() {
+            updateStatus('Cleaning temporary files...');
+            addLogEntry('INFO', 'Starting disk cleanup');
+            
+            // Show modal
+            const modal = document.getElementById('disk-cleanup-modal');
+            const progressBar = document.getElementById('cleanup-progress');
+            const logContainer = document.getElementById('cleanup-log');
+            
+            // Clear previous log
+            logContainer.innerHTML = '';
+            
+            // Add initial log entry
+            addLogToContainer(logContainer, '[12:00:00]', 'INFO', 'Starting disk cleanup...');
+            
+            modal.style.display = 'flex';
+            
+            // Simulate cleanup process
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 10;
+                progressBar.style.width = progress + '%';
+                
+                if (progress >= 30) {
+                    addLogToContainer(logContainer, '[12:00:30]', 'INFO', 'Cleaning temporary files...');
+                } else if (progress >= 60) {
+                    addLogToContainer(logContainer, '[12:01:00]', 'INFO', 'Cleaning Windows temp folder...');
+                } else if (progress >= 90) {
+                    addLogToContainer(logContainer, '[12:01:30]', 'INFO', 'Emptying Recycle Bin...');
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    
+                    // Completion
+                    setTimeout(() => {
+                        addLogToContainer(logContainer, '[12:02:00]', 'SUCCESS', 'Disk cleanup completed successfully!');
+                        addLogToContainer(logContainer, '[12:02:00]', 'INFO', 'Freed approximately 1.2 GB of disk space');
+                        
+                        addLogEntry('SUCCESS', 'Disk cleanup completed');
+                        updateStatus('Ready');
+                        
+                        // Update system info to reflect cleanup
+                        setTimeout(() => {
+                            // Simulate disk space change
+                            document.getElementById('disk-info').textContent = '93.7/169.4 GB';
+                        }, 500);
+                    }, 500);
+                }
+            }, 200);
+        }
+        
+        // Defragmentation Function
+        function startDefragmentation() {
+            updateStatus('Defragmenting C: drive...');
+            addLogEntry('INFO', 'Starting disk defragmentation');
+            
+            // Show modal
+            const modal = document.getElementById('defrag-modal');
+            const progressBar = document.getElementById('defrag-progress');
+            const logContainer = document.getElementById('defrag-log');
+            
+            // Clear previous log
+            logContainer.innerHTML = '';
+            
+            // Add initial log entry
+            addLogToContainer(logContainer, '[12:00:00]', 'INFO', 'Starting disk defragmentation...');
+            
+            modal.style.display = 'flex';
+            
+            // Simulate defragmentation process
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 5;
+                progressBar.style.width = progress + '%';
+                
+                if (progress >= 20) {
+                    addLogToContainer(logContainer, '[12:01:00]', 'INFO', 'Analyzing disk fragmentation...');
+                } else if (progress >= 40) {
+                    addLogToContainer(logContainer, '[12:03:00]', 'INFO', 'Defragmenting system files...');
+                } else if (progress >= 60) {
+                    addLogToContainer(logContainer, '[12:05:00]', 'INFO', 'Optimizing file placement...');
+                } else if (progress >= 80) {
+                    addLogToContainer(logContainer, '[12:07:00]', 'INFO', 'Finalizing defragmentation...');
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    
+                    // Completion
+                    setTimeout(() => {
+                        addLogToContainer(logContainer, '[12:09:00]', 'SUCCESS', 'Defragmentation completed successfully!');
+                        addLogToContainer(logContainer, '[12:09:00]', 'INFO', 'Disk performance improved by 15%');
+                        
+                        addLogEntry('SUCCESS', 'Defragmentation completed');
+                        updateStatus('Ready');
+                    }, 500);
+                }
+            }, 300);
+        }
+        
+        // SSD TRIM Function
+        function startSSDTrim() {
+            updateStatus('Running TRIM on SSD...');
+            addLogEntry('INFO', 'Starting SSD TRIM operation');
+            
+            // Show modal
+            const modal = document.getElementById('trim-modal');
+            const progressBar = document.getElementById('trim-progress');
+            const logContainer = document.getElementById('trim-log');
+            
+            // Clear previous log
+            logContainer.innerHTML = '';
+            
+            // Add initial log entry
+            addLogToContainer(logContainer, '[12:00:00]', 'INFO', 'Starting SSD TRIM operation...');
+            
+            modal.style.display = 'flex';
+            
+            // Simulate TRIM process
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 15;
+                progressBar.style.width = progress + '%';
+                
+                if (progress >= 30) {
+                    addLogToContainer(logContainer, '[12:00:15]', 'INFO', 'Checking TRIM settings...');
+                } else if (progress >= 60) {
+                    addLogToContainer(logContainer, '[12:00:30]', 'INFO', 'Running TRIM command...');
+                } else if (progress >= 90) {
+                    addLogToContainer(logContainer, '[12:00:45]', 'INFO', 'Optimizing SSD blocks...');
+                }
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    
+                    // Completion
+                    setTimeout(() => {
+                        addLogToContainer(logContainer, '[12:01:00]', 'SUCCESS', 'SSD TRIM completed successfully!');
+                        addLogToContainer(logContainer, '[12:01:00]', 'INFO', 'SSD performance optimized');
+                        
+                        addLogEntry('SUCCESS', 'SSD TRIM completed');
+                        updateStatus('Ready');
+                    }, 500);
+                }
+            }, 150);
+        }
+        
+        // Disk Analysis Function
+        function analyzeDiskUsage() {
+            updateStatus('Analyzing disk usage...');
+            addLogEntry('INFO', 'Starting disk usage analysis');
+            
+            // Show modal
+            const modal = document.getElementById('analysis-modal');
+            const progressBar = document.getElementById('analysis-progress');
+            const resultsContainer = document.getElementById('analysis-results');
+            
+            modal.style.display = 'flex';
+            
+            // Clear previous results
+            resultsContainer.innerHTML = '<p>Analyzing disk usage on C: drive...</p>';
+            
+            // Simulate analysis process
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 20;
+                progressBar.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    
+                    // Show results
+                    setTimeout(() => {
+                        resultsContainer.innerHTML = `
+                            <h3 style="color: #1a73e8; margin-bottom: 15px;">Disk Usage Analysis Results</h3>
+                            <div style="background-color: #f5f7fa; padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span>Total Disk Space:</span>
+                                    <span style="font-weight: 600;">169.4 GB</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span>Used Space:</span>
+                                    <span style="font-weight: 600;">94.9 GB (56.1%)</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                    <span>Free Space:</span>
+                                    <span style="font-weight: 600;">74.5 GB (43.9%)</span>
+                                </div>
+                            </div>
+                            
+                            <h4 style="color: #555; margin-bottom: 10px;">Largest Folders:</h4>
+                            <div style="margin-bottom: 10px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Windows Folder:</span>
+                                    <span>25.4 GB</span>
+                                </div>
+                                <div class="progress-bar" style="height: 8px; margin: 5px 0;">
+                                    <div class="progress-fill" style="width: 45%; background-color: #f44336;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 10px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>Program Files:</span>
+                                    <span>18.7 GB</span>
+                                </div>
+                                <div class="progress-bar" style="height: 8px; margin: 5px 0;">
+                                    <div class="progress-fill" style="width: 33%; background-color: #ff9800;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-bottom: 10px;">
+                                <div style="display: flex; justify-content: space-between;">
+                                    <span>User Profile:</span>
+                                    <span>32.1 GB</span>
+                                </div>
+                                <div class="progress-bar" style="height: 8px; margin: 5px 0;">
+                                    <div class="progress-fill" style="width: 57%; background-color: #4caf50;"></div>
+                                </div>
+                            </div>
+                            
+                            <div style="margin-top: 20px; padding: 10px; background-color: #e8f5e9; border-radius: 6px; border-left: 4px solid #4caf50;">
+                                <strong>Recommendation:</strong> Consider cleaning temporary files and moving large files to external storage.
+                            </div>
+                        `;
+                        
+                        addLogEntry('SUCCESS', 'Disk analysis completed');
+                        updateStatus('Ready');
+                    }, 500);
+                }
+            }, 200);
+        }
+        
+        // Complete Optimization Function
+        function startCompleteOptimization() {
+            if (optimizationInProgress) {
+                alert('Optimization is already in progress. Please wait for it to complete.');
+                return;
+            }
+            
+            const confirmStart = confirm('This will perform ALL optimizations in sequence.\n\nEstimated time: 15-30 minutes\n\nAre you sure you want to continue?');
+            if (!confirmStart) return;
+            
+            // Start optimization
+            optimizationInProgress = true;
+            currentStep = 0;
+            startTime = new Date();
+            
+            // Update UI
+            document.getElementById('start-opt-btn').disabled = true;
+            document.getElementById('stop-opt-btn').disabled = false;
+            document.getElementById('time-remaining').style.display = 'block';
+            document.getElementById('progress-panel').style.display = 'block';
+            
+            updateStatus('Starting complete optimization...');
+            addLogEntry('INFO', 'Starting complete system optimization');
+            
+            // Define optimization steps
+            const steps = [
+                {name: 'Creating System Restore Point', desc: 'Creating backup point before optimization'},
+                {name: 'Cleaning Temporary Files', desc: 'Removing temporary and junk files'},
+                {name: 'Optimizing Disk Storage', desc: 'Defragmenting HDD / TRIM SSD'},
+                {name: 'Optimizing Memory Settings', desc: 'Configuring RAM and virtual memory'},
+                {name: 'Optimizing CPU Settings', desc: 'Configuring processor and power settings'},
+                {name: 'Optimizing Network Settings', desc: 'Enhancing network performance'},
+                {name: 'Managing Startup Programs', desc: 'Disabling unnecessary startup items'},
+                {name: 'Optimizing Windows Services', desc: 'Configuring service settings'},
+                {name: 'Optimizing System Registry', desc: 'Cleaning and optimizing registry'},
+                {name: 'Applying Privacy Settings', desc: 'Configuring privacy and security'},
+                {name: 'Optimizing Visual Effects', desc: 'Adjusting UI for performance'},
+                {name: 'Final System Check', desc: 'Verifying optimizations'}
+            ];
+            
+            totalSteps = steps.length;
+            
+            // Start optimization timer
+            optimizationTimer = setInterval(() => {
+                updateOptimizationProgress(steps);
+            }, 100);
+            
+            // Simulate first step immediately
+            updateOptimizationProgress(steps);
+        }
+        
+        // Update optimization progress
+        function updateOptimizationProgress(steps) {
+            if (!optimizationInProgress) return;
+            
+            // Calculate progress based on time elapsed (simulated)
+            const elapsed = (new Date() - startTime) / 1000; // seconds
+            const totalEstimatedTime = 25 * 60; // 25 minutes in seconds
+            
+            // Calculate overall progress
+            let overallProgress = Math.min(100, Math.floor((elapsed / totalEstimatedTime) * 100));
+            
+            // Calculate which step we're on based on progress
+            const stepProgress = overallProgress / 100;
+            currentStep = Math.min(totalSteps - 1, Math.floor(stepProgress * totalSteps));
+            
+            // Calculate step-specific progress
+              const stepStartPercent = (currentStep / totalSteps) * 100;
+            const stepEndPercent = ((currentStep + 1) / totalSteps) * 100;
+            const stepRange = stepEndPercent - stepStartPercent;
+            const progressInStep = overallProgress - stepStartPercent;
+            const stepSpecificProgress = Math.min(100, Math.max(0, (progressInStep / stepRange) * 100));
+            
+            // Update UI
+            document.getElementById('overall-progress').style.width = overallProgress + '%';
+            document.getElementById('overall-percent').textContent = overallProgress + '%';
+            
+            document.getElementById('step-progress').style.width = stepSpecificProgress + '%';
+            document.getElementById('step-percent').textContent = Math.floor(stepSpecificProgress) + '%';
+            
+            document.getElementById('step-info').textContent = `Step: ${currentStep + 1}/${totalSteps}`;
+            document.getElementById('step-number').textContent = `Step ${currentStep + 1}/${totalSteps}: ${steps[currentStep].name}`;
+            document.getElementById('step-desc').textContent = steps[currentStep].desc;
+            
+            document.getElementById('current-operation').textContent = `${steps[currentStep].name} - ${steps[currentStep].desc} (${Math.floor(stepSpecificProgress)}%)`;
+            
+            // Update time remaining
+            const remainingSeconds = Math.max(0, totalEstimatedTime - elapsed);
+            const minutes = Math.floor(remainingSeconds / 60);
+            const seconds = Math.floor(remainingSeconds % 60);
+            document.getElementById('time-remaining').textContent = `Time remaining: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            updateStatus(`Step ${currentStep + 1}/${totalSteps}: ${steps[currentStep].name}`);
+            
+            // Check if optimization is complete
+            if (overallProgress >= 100) {
+                completeOptimization();
+            }
+        }
+        
+        // Stop Optimization Function
+        function stopOptimization() {
+            if (!optimizationInProgress) return;
+            
+            const confirmStop = confirm('Are you sure you want to stop the optimization process?');
+            if (!confirmStop) return;
+            
+            // Stop optimization
+            optimizationInProgress = false;
+            
+            // Clear timer
+            if (optimizationTimer) {
+                clearInterval(optimizationTimer);
+                optimizationTimer = null;
+            }
+            
+            // Update UI
+            document.getElementById('start-opt-btn').disabled = false;
+            document.getElementById('stop-opt-btn').disabled = true;
+            document.getElementById('time-remaining').style.display = 'none';
+            
+            document.getElementById('current-operation').textContent = 'Optimization stopped by user';
+            updateStatus('Optimization stopped');
+            
+            addLogEntry('WARNING', 'Optimization stopped by user');
+        }
+        
+        // Complete Optimization
+        function completeOptimization() {
+            optimizationInProgress = false;
+            
+            // Clear timer
+            if (optimizationTimer) {
+                clearInterval(optimizationTimer);
+                optimizationTimer = null;
+            }
+            
+            // Update UI
+            document.getElementById('start-opt-btn').disabled = false;
+            document.getElementById('stop-opt-btn').disabled = true;
+            document.getElementById('time-remaining').style.display = 'none';
+            
+            document.getElementById('overall-progress').style.width = '100%';
+            document.getElementById('overall-percent').textContent = '100%';
+            document.getElementById('step-progress').style.width = '100%';
+            document.getElementById('step-percent').textContent = '100%';
+            
+            document.getElementById('current-operation').textContent = 'Optimization completed successfully!';
+            document.getElementById('step-number').textContent = 'Step 12/12: Optimization Complete';
+            document.getElementById('step-desc').textContent = 'All optimizations completed successfully';
+            
+            updateStatus('Optimization completed successfully');
+            
+            addLogEntry('SUCCESS', 'Complete optimization finished successfully');
+            
+            // Show completion message
+            setTimeout(() => {
+                alert('Complete optimization finished successfully!\n\nRecommended actions:\n1. Restart your computer\n2. Run Windows Update\n3. Check for driver updates\n4. Review optimization report');
+            }, 500);
+        }
+        
+        // View Log Function
+        function viewLog() {
+            const modal = document.getElementById('log-modal');
+            const logContainer = document.getElementById('log-viewer');
+            
+            // Clear previous log
+            logContainer.innerHTML = '';
+            
+            // Add log entries
+            logEntries.forEach(entry => {
+                addLogToContainer(logContainer, `[${entry.time}]`, entry.type, entry.message);
+            });
+            
+            modal.style.display = 'flex';
+        }
+        
+        // Generate Report Function
+        function generateReport() {
+            updateStatus('Generating optimization report...');
+            
+            // Create report content
+            const reportContent = `
+===============================================================
+        WINDOWS OPTIMIZATION REPORT
+        Generated: ${new Date().toLocaleString()}
+===============================================================
+
+APPLICATION INFORMATION:
+=======================
+Application: Windows Performance Optimizer Pro
+Version: 1.0 (Complete Edition)
+Developer: IGRF Pvt. Ltd.
+Website: https://igrf.co.in/en/
+
+SYSTEM INFORMATION:
+===================
+Computer Name: ${window.location.hostname || 'Localhost'}
+Windows Version: HTML Simulation
+Report Generated: ${new Date().toLocaleString()}
+
+HARDWARE INFORMATION:
+=====================
+Processor: Intel(R) Core(TM) i5-10210U
+Total Physical Memory: 15.64 GB
+Current RAM Usage: 8.55 GB / 15.64 GB (54.7%)
+
+DISK INFORMATION:
+=================
+Drive C: 94.9/169.4 GB (56.1% used)
+
+OPERATING SYSTEM INFORMATION:
+=============================
+OS Name: Microsoft Windows 10
+OS Version: 10.0.26220.0
+
+SYSTEM UPTIME:
+==============
+System Uptime: 0 days, 4 hours, 0 minutes
+
+RUNNING PROCESSES AND SERVICES:
+===============================
+Running Processes: 268
+Running Services: 128
+
+DISK TYPE DETECTION:
+====================
+Primary Disk Type: SSD
+
+RECOMMENDATIONS:
+================
+1. Regularly run Disk Cleanup to remove temporary files
+2. Defragment HDD drives monthly (if applicable)
+3. Run TRIM command weekly for SSD drives
+4. Monitor disk usage and keep at least 15% free space
+5. Review startup programs and disable unnecessary ones
+6. Keep Windows and drivers updated
+7. Perform regular system maintenance
+
+===============================================================
+        END OF REPORT
+===============================================================
+            `;
+            
+            // Create download link
+            const blob = new Blob([reportContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `OptimizationReport_${new Date().toISOString().slice(0, 19).replace(/[:]/g, '-')}.txt`;
+            
+            // Trigger download
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            // Update UI
+            updateStatus('Report generated successfully');
+            addLogEntry('INFO', 'Optimization report generated');
+            
+            // Show success message
+            setTimeout(() => {
+                alert('Report successfully generated!\n\nThe report has been downloaded to your computer.');
+            }, 100);
+        }
+        
+        // Generate Full Report (for Reports tab)
+        function generateFullReport() {
+            generateReport();
+            
+            // Update reports list
+            const reportsList = document.getElementById('reports-list');
+            const reportTime = new Date().toLocaleString();
+            
+            reportsList.innerHTML = `
+                <h3 style="color: #1a73e8; margin-bottom: 10px;">Generated Reports</h3>
+                <div style="background-color: #f5f7fa; padding: 15px; border-radius: 6px; margin-bottom: 10px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <div style="font-weight: 600; color: #333;">Full System Report</div>
+                            <div style="font-size: 14px; color: #666;">Generated: ${reportTime}</div>
+                        </div>
+                        <button class="btn btn-primary" style="padding: 8px 15px; font-size: 14px;" onclick="generateReport()">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Show Service Manager
+        function showServiceManager() {
+            alert('Service Manager: This feature would allow you to manage Windows services in the full application.');
+        }
+        
+        // Show Startup Manager
+        function showStartupManager() {
+            alert('Startup Manager: This feature would allow you to control startup programs in the full application.');
+        }
+        
+        // Show Registry Cleaner
+        function showRegistryCleaner() {
+            alert('Registry Cleaner: This feature would clean and optimize the Windows registry in the full application.');
+        }
+        
+        // Show Privacy Optimizer
+        function showPrivacyOptimizer() {
+            alert('Privacy Optimizer: This feature would optimize Windows privacy settings in the full application.');
+        }
+        
+        // Utility Functions
+        function updateStatus(text) {
+            document.getElementById('status-text').textContent = text;
+        }
+        
+        function addLogEntry(type, message) {
+            const time = getCurrentTime();
+            logEntries.push({time, type, message});
+        }
+        
+        function addLogToContainer(container, time, type, message) {
+            const logEntry = document.createElement('div');
+            logEntry.className = 'log-entry';
+            
+            const typeClass = type.toLowerCase();
+            
+            logEntry.innerHTML = `
+                <span class="log-time">${time}</span>
+                <span class="log-type ${typeClass}">${type}</span>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(logEntry);
+            container.scrollTop = container.scrollHeight;
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>
